@@ -1,6 +1,6 @@
 import { PlayerProps } from './Player.types';
 
-const Player = ({ variant, bet, onClick, disabled }: PlayerProps) => {
+export const Player = ({ variant, bet, onClick, disabled }: PlayerProps) => {
   return (
     <div>
       <button onClick={() => onClick(variant)} disabled={disabled}>
@@ -14,5 +14,3 @@ const Player = ({ variant, bet, onClick, disabled }: PlayerProps) => {
     </div>
   );
 };
-
-export default Player;

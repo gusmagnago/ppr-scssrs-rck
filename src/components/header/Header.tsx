@@ -1,10 +1,9 @@
-interface HeaderTypes {
-  balance: number;
-  bet: number;
-  win: number;
-}
+import { useContext } from 'react';
+import { AppContext } from '../../context/appContext';
 
-const Header = ({ balance, bet, win }: HeaderTypes) => {
+const Header = () => {
+  const { balance, bet, win } = useContext(AppContext);
+
   return (
     <div>
       <p>
