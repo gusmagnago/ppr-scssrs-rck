@@ -93,31 +93,33 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   };
 
   const winAgainstComputer = (
-    userBet: string,
+    userBet: string[],
     computerBet: string
   ): boolean => {
     return (
-      (userBet === 'rock' && computerBet === 'scissor') ||
-      (userBet === 'paper' && computerBet === 'rock') ||
-      (userBet === 'scissor' && computerBet === 'paper')
+      (userBet.includes('rock') && computerBet === 'scissor') ||
+      (userBet.includes('paper') && computerBet === 'rock') ||
+      (userBet.includes('scissor') && computerBet === 'paper')
     );
   };
 
   const calculateResult = (userBets: string[], compBet: string) => {
-    if (userBets.includes(compBet)) {
-      return console.log('TIE');
-    }
-    if (userBets.length === 1 && winAgainstComputer(userBets[0], compBet)) {
-      console.log('YOU WIN 14X YOUR BET');
-      setWin((prevWin) => prevWin + 1);
-      setBalance((prevBalance) => prevBalance * 14);
-    }
-    if (userBets.length === 2 && winAgainstComputer(userBets[0], compBet)) {
-      console.log('YOU WIN ONLY 3X YOUR BET');
-      setWin((prevWin) => prevWin + 1);
-      setBalance((prevBalance) => prevBalance * 3);
-    }
-    return console.log('YOU L0SE');
+    setTimeout(() => {
+      if (userBets.includes(compBet)) {
+        return console.log('TIE');
+      }
+      if (userBets.length === 1 && winAgainstComputer(userBets, compBet)) {
+        console.log('YOU WIN 14X YOUR BET');
+        setWin((prevWin) => prevWin + 1);
+        setBalance((prevBalance) => prevBalance * 14);
+      }
+      if (userBets.length === 2 && winAgainstComputer(userBets, compBet)) {
+        console.log('YOU WIN ONLY 3X YOUR BET');
+        setWin((prevWin) => prevWin + 1);
+        setBalance((prevBalance) => prevBalance * 3);
+      }
+      return console.log('YOU L0SE');
+    }, 5000);
   };
 
   const contextValues: GameContextType = {

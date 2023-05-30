@@ -8,4 +8,5 @@ export const palette: Palette = {
     gold: '#D2B17E',
     gray: '#E3E3E3',
     white: '#FFF',
+    betBorder: '#225bf6',
 };

@@ -1,21 +1,22 @@
 import { useContext } from 'react';
 import { AppContext } from '../../context/appContext';
+import { HeaderWrapper } from './Header.styles';
 
 const Header = () => {
   const { balance, bet, win } = useContext(AppContext);
 
   return (
-    <div>
+    <HeaderWrapper>
       <p>
-        <span>Balance: {balance}</span>
+        Balance: <span>{balance}</span>
       </p>
       <p>
-        <span>Bet: {bet}</span>
+        Bet: <span>{bet}</span>
       </p>
       <p>
-        <span>Win: {win}</span>
+        Win: <span> {win}</span>
       </p>
-    </div>
+    </HeaderWrapper>
   );
 };
 
