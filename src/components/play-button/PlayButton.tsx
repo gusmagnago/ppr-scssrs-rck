@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { AppContext } from '../../context/appContext';
+import { Play, PlayWrapper } from './PlayButton.styles';
 
 export const PlayButton = () => {
   const { generateComputerBet, computerChoice, selectedBet, clearState } =
@@ -11,10 +12,10 @@ export const PlayButton = () => {
   };
 
   return (
-    <div>
-      <button disabled={!selectedBet.length} onClick={handlePlayGame}>
+    <PlayWrapper>
+      <Play disabled={!selectedBet.length} onClick={handlePlayGame}>
         {computerChoice ? 'Clear' : 'Play'}
-      </button>
-    </div>
+      </Play>
+    </PlayWrapper>
   );
 };

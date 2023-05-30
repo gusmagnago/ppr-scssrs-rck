@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { GameContextType, GameElements } from '../utils/types/game';
+import { GameContextType, GameElements, Outcome } from '../utils/types/game';
 
 type AppProviderProps = {
   children: ReactNode;
@@ -15,6 +15,8 @@ const initialState = {
   selectedBet: [],
   playElements: [{ variant: '', bet: 0 }],
   computerChoice: '',
+  winner: '',
+  winnerMessage: '',
   handleSelect: () => {},
   generateComputerBet: () => {},
   clearState: () => {},
@@ -31,6 +33,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const [selectedBet, setSelectedBet] = useState<string[]>([]);
   const [win, setWin] = useState<number>(initialState.win);
   const [computerChoice, setComputerChoice] = useState<string>('');
+  const [winnerMessage, setWinnerMessage] = useState<string>('');
+  const [winner, setWinner] = useState<string>('');
 
   useEffect(() => {
     if (betRock > 0 || betPaper > 0 || betScissor > 0) {
@@ -89,35 +93,85 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setBetPaper(0);
       setBetScissor(0);
       setComputerChoice('');
+      setWinnerMessage('');
     }
   };
 
   const winAgainstComputer = (
-    userBet: string,
+    userBet: string[],
     computerBet: string
   ): boolean => {
     return (
-      (userBet === 'rock' && computerBet === 'scissor') ||
-      (userBet === 'paper' && computerBet === 'rock') ||
-      (userBet === 'scissor' && computerBet === 'paper')
+      (userBet.includes('rock') && computerBet === 'scissor') ||
+      (userBet.includes('paper') && computerBet === 'rock') ||
+      (userBet.includes('scissor') && computerBet === 'paper')
     );
   };
 
+  const findWinner = (
+    userBet: string[],
+    computerBet: string
+  ): string | undefined => {
+    if (userBet.includes('rock') && computerBet === 'scissor') {
+      return 'rock';
+    }
+    if (userBet.includes('paper') && computerBet === 'rock') {
+      return 'paper';
+    }
+    if (userBet.includes('scissor') && computerBet === 'paper') {
+      return 'scissor';
+    }
+  };
+
   const calculateResult = (userBets: string[], compBet: string) => {
-    if (userBets.includes(compBet)) {
-      return console.log('TIE');
-    }
-    if (userBets.length === 1 && winAgainstComputer(userBets[0], compBet)) {
-      console.log('YOU WIN 14X YOUR BET');
-      setWin((prevWin) => prevWin + 1);
-      setBalance((prevBalance) => prevBalance * 14);
-    }
-    if (userBets.length === 2 && winAgainstComputer(userBets[0], compBet)) {
-      console.log('YOU WIN ONLY 3X YOUR BET');
-      setWin((prevWin) => prevWin + 1);
-      setBalance((prevBalance) => prevBalance * 3);
-    }
-    return console.log('YOU L0SE');
+    setTimeout(() => {
+      const outcomes: Outcome[] = [
+        {
+          condition: userBets.includes(compBet),
+          message: "It's a tie",
+          updateBalance: 0,
+        },
+        {
+          condition:
+            userBets.length === 1 && winAgainstComputer(userBets, compBet),
+          updateWin: true,
+          updateBalance: 14,
+          getWinner: () => userBets[0],
+          message: (winner: string) => `${winner} WON`,
+        },
+        {
+          condition:
+            userBets.length === 2 && winAgainstComputer(userBets, compBet),
+          updateWin: true,
+          updateBalance: 3,
+          getWinner: () => findWinner(userBets, compBet),
+          message: (winner: string) => `${winner} won`,
+        },
+        {
+          condition: true,
+          getWinner: () => compBet,
+          message: `${compBet} WON`,
+          updateBalance: 0,
+        },
+      ];
+
+      const outcome = outcomes.find((o) => o.condition);
+      if (outcome) {
+        if (outcome.updateWin) {
+          setWin((prevWin) => prevWin + 1);
+        }
+        if (outcome.updateBalance) {
+          setBalance((prevBalance) => prevBalance * outcome.updateBalance);
+        }
+        const winner = outcome.getWinner ? outcome.getWinner() : undefined;
+        setWinner(winner!);
+        const message =
+          typeof outcome.message === 'function'
+            ? outcome.message(winner!)
+            : outcome.message;
+        setWinnerMessage(message);
+      }
+    }, 1000);
   };
 
   const contextValues: GameContextType = {
@@ -133,6 +187,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     handleSelect,
     generateComputerBet,
     clearState,
+    winner,
+    winnerMessage,
   };
 
   return (

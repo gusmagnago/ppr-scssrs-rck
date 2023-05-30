@@ -6,5 +6,6 @@ export type Palette = {
   gold: string;
   gray: string;
   white: string;
+  betBorder: string;
 };
 
