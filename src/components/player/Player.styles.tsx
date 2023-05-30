@@ -49,14 +49,14 @@ export const Bet = styled.div`
   border-radius: 50%;
   margin-right: 0;
   color: ${palette.black};
-  padding: 5px;
+  padding: 10px;
 
   width: 25px;
   height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 `;
 
 export const ButtonName = styled.div`

@@ -1,43 +1,16 @@
 import { useContext } from 'react';
 import { AppContext } from '../../context/appContext';
 import { Player } from '../player/Player';
-import {
-  ComputerChoice,
-  GameLetteringWrapper,
-  GameWrapper,
-  PlayerWrapper,
-  Text,
-} from './Game.styles';
-import { GameStylingProps } from './Game.types';
+import { GameWrapper, PlayerWrapper } from './Game.styles';
+import { GameMessage } from '../game-message/GameMessage';
 
-export const Game = ({ bets }: GameStylingProps) => {
-  const { balance, selectedBet, playElements, handleSelect, computerChoice } =
+export const Game = () => {
+  const { balance, selectedBet, playElements, handleSelect } =
     useContext(AppContext);
 
   return (
     <GameWrapper>
-      <GameLetteringWrapper bets={selectedBet} {...bets}>
-        {selectedBet?.length ? (
-          <p>
-            {selectedBet.length > 1 ? (
-              <>
-                {selectedBet[0]}
-                <Text>&</Text> {selectedBet[1]}
-                <Text>vs</Text>
-                <ComputerChoice>{computerChoice}</ComputerChoice>
-              </>
-            ) : (
-              <>
-                {selectedBet[0]}
-                <Text>vs</Text>
-                <ComputerChoice>{computerChoice}</ComputerChoice>
-              </>
-            )}
-          </p>
-        ) : (
-          <p>Pick your positions</p>
-        )}
-      </GameLetteringWrapper>
+      <GameMessage />
       <PlayerWrapper>
         {playElements.map(({ variant, bet }) => (
           <Player
