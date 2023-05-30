@@ -7,8 +7,10 @@ export type GameContextType = {
     win: number;
     selectedBet: string[];
     playElements: GameElements;
+    computerChoice: string;
     handleSelect: (variant: string) => void;
+    generateComputerBet: () => void;
+    clearState: (betList: selectedBet[]) => void;
 };
 
-
-export type GameElements = { variant: PlayerVariantsTypes; bet: number }[]
+export type GameElements = { variant: PlayerVariantsTypes; bet: number }[];
