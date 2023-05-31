@@ -4,6 +4,12 @@ import { palette } from '../../theme/palette';
 
 const opacity = 40;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Button = styled.button<PlayerStylingProps>`
   border-radius: 5px;
   width: 150px;
@@ -66,4 +72,13 @@ export const ButtonName = styled.div`
   margin-bottom: 15px;
   width: 100%;
   font-size: 20px;
+`;
+
+export const ClearBetBtt = styled.button`
+  background-color: ${palette.black};
+  border: 3px solid ${palette.gold};
+  border-radius: 50px;
+  color: ${palette.gold};
+  padding: 5px 10px;
+  margin-top: 10px;
 `;

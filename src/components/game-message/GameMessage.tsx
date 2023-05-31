@@ -2,9 +2,10 @@ import { useContext } from 'react';
 import {
   GameLetteringWrapper,
   Text,
-  ComputerChoice,
   WinnerPoints,
   MainWinner,
+  Bet,
+  MainWinnerWrapper,
 } from './GameMessage.styles';
 import { AppContext } from '../../context/appContext';
 
@@ -27,29 +28,35 @@ export const GameMessage = () => {
         </WinnerPoints>
       );
     }
+    return (
+      <WinnerPoints>
+        you lose <span>{bet}</span> of your balance
+      </WinnerPoints>
+    );
   };
 
   return (
     <GameLetteringWrapper bets={selectedBet}>
       {winnerMessage ? (
-        <div>
+        <MainWinnerWrapper>
           <MainWinner variant={winner}>{winnerMessage}</MainWinner>
           {generateWinnerPointsMessage()}
-        </div>
+        </MainWinnerWrapper>
       ) : selectedBet?.length ? (
         <p>
           {selectedBet.length > 1 ? (
             <>
-              {selectedBet[0]}
-              <Text>&</Text> {selectedBet[1]}
+              <Bet>{selectedBet[0]}</Bet>
+              <Text>&</Text>
+              <Bet>{selectedBet[1]}</Bet>
               <Text>vs</Text>
-              <ComputerChoice>{computerChoice}</ComputerChoice>
+              <Bet>{computerChoice}</Bet>
             </>
           ) : (
             <>
-              {selectedBet[0]}
+              <Bet>{selectedBet[0]}</Bet>
               <Text>vs</Text>
-              <ComputerChoice>{computerChoice}</ComputerChoice>
+              <Bet>{computerChoice}</Bet>
             </>
           )}
         </p>
