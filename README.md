@@ -25,9 +25,8 @@ npm start
 
 ## To Visit App:
 
-```sh
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-```
+
 
 ## Project structure
 
@@ -86,7 +85,7 @@ Goal: The goal of this project is to demonstrate:
 
 ## Try it out!
 
-[Rock - Paper - Scissor](https://ppr-scssrs-rck-game.vercel.app/)
+<a href="https://ppr-scssrs-rck-game.vercel.app/" target="_blank">Rock - Paper - Scissor</a>
 
 #### Thank you!
 
