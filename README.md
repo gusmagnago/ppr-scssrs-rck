@@ -1,6 +1,6 @@
 # Paper - Rock - Scissor Game :collision:
 
-A scissors, rock, paper game, with the ability to bet on the winning posi:on.
+A scissors, rock, paper game, with the ability to bet on the winning position.
 
 ## Setup
 
@@ -72,7 +72,7 @@ Goal: The goal of this project is to demonstrate:
 - If player bets on two of them and wins the return is 3 times the bet.
 - AJer round ends the return adds to the balance
 - Player cannot bet if player has less balance than available for bet.
-- Each bet should be 500 (player can place several bets on one posi:on: 500, 1000, 1500 etc)
+- Each bet should be 500 (player can place several bets on one position: 500, 1000, 1500 etc)
 
 
 ## Technologies Used
