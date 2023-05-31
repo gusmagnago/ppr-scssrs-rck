@@ -1,46 +1,93 @@
-# Getting Started with Create React App
+# Paper - Rock - Scissor Game :collision:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A scissors, rock, paper game, with the ability to bet on the winning posi:on.
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+### Install dependencies
 
-### `npm start`
+Once you've cloned the repository install the required dependencies:
 
-Runs the app in the development mode.\
+```sh
+npm install
+```
+
+## Run
+
+### Development server
+
+To run the project in development mode run:
+
+```sh
+npm start
+```
+
+
+## To Visit App:
+
+```sh
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project structure
 
-### `npm test`
+The directory structure is the following:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
 
-### `npm run build`
+├── public
+├── src
+│   ├── components
+│   │   └──── game
+|   |   └──── game-message
+|   |   |   └──── GameMessage.styles.tsx
+|   |   |   └──── GameMessage.tsx
+|   |   |   └──── GameMessage.types.ts
+|   |   └──── header
+|   |   └──── play-button
+|   |   └──── player
+│   ├── context
+│   │   └──── appContext.tsx
+│   ├── theme
+│   │   └──── palette.ts
+│   │   └──── theme.type.ts
+│   ├── utils
+|   |   |   └──── types
+|   |   |   |     └──── game.d.ts
+│   ├── App.tsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## General Information
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Goal: The goal of this project is to demonstrate:
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- There should be three betting positions, rock, paper, scissors.
+- Player starts with a balance of 5000.
+- Player can bet on rock, paper, or scissors, but not on all three at the same :me.
+- The bet is reduced from the balance.
+- When betting done button is clicked, the computer runs a random paper, scissors, rock match.
+- Player choice should be compared to computers choice and only one bet can win – every tie counts as loss
+- If player bets on one of them and wins, the return is 14 times the bet.
+- If player bets on two of them and wins the return is 3 times the bet.
+- AJer round ends the return adds to the balance
+- Player cannot bet if player has less balance than available for bet.
+- Each bet should be 500 (player can place several bets on one posi:on: 500, 1000, 1500 etc)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- JavaScript
+- React
+- React Context
+- Typescript
+- Styled-Components
 
-## Learn More
+## Try it out!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[Rock - Paper - Scissor](https://ppr-scssrs-rck-game.vercel.app/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Thank you!
+
+###
