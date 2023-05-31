@@ -31,8 +31,14 @@ export const Text = styled.span`
   margin: 0 30px;
 `;
 
-export const ComputerChoice = styled.span`
+export const Bet = styled.span`
   color: ${palette.white};
+`;
+
+export const MainWinnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const MainWinner = styled.p<GameStylingProps>`
@@ -66,7 +72,7 @@ export const WinnerPoints = styled.div`
   align-items: center;
   justify-content: center;
   span {
-    margin-left: 15px;
+    margin: 0 15px;
     color: ${palette.white};
     font-size: inherit;
   }

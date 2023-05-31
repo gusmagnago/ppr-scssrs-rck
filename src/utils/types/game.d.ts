@@ -13,6 +13,8 @@ export type GameContextType = {
     handleSelect: (variant: string) => void;
     generateComputerBet: () => void;
     clearState: (betList: selectedBet[]) => void;
+    playAgain: (balance: number) => void
+    clearBet: (bet: number, variant: string) => void;
 };
 
 
@@ -24,6 +26,6 @@ export type Outcome = {
     condition: boolean;
     updateWin?: boolean;
     updateBalance: number;
-    getWinner?: () => string | undefined;
+    getWinner: () => string | undefined;
     message: string | ((winner: string) => string);
 };

@@ -5,8 +5,14 @@ import { GameWrapper, PlayerWrapper } from './Game.styles';
 import { GameMessage } from '../game-message/GameMessage';
 
 export const Game = () => {
-  const { balance, selectedBet, playElements, handleSelect } =
-    useContext(AppContext);
+  const {
+    balance,
+    selectedBet,
+    playElements,
+    handleSelect,
+    computerChoice,
+    clearBet,
+  } = useContext(AppContext);
 
   return (
     <GameWrapper>
@@ -19,11 +25,13 @@ export const Game = () => {
               (selectedBet &&
                 !selectedBet.includes(variant) &&
                 selectedBet.length >= 2) ||
-              balance === 0
+              balance === 0 ||
+              !!computerChoice
             }
             key={`${variant}-bttn`}
             onClick={() => handleSelect(variant)}
             variant={variant}
+            clearBet={() => clearBet(bet, variant)}
           />
         ))}
       </PlayerWrapper>

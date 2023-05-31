@@ -20,6 +20,8 @@ const initialState = {
   handleSelect: () => {},
   generateComputerBet: () => {},
   clearState: () => {},
+  playAgain: () => {},
+  clearBet: () => {},
 };
 
 export const AppContext = createContext<GameContextType>(initialState);
@@ -40,7 +42,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     if (betRock > 0 || betPaper > 0 || betScissor > 0) {
       setBalance((prevBalance) => prevBalance - 500);
     }
-  }, [betRock, betPaper, betScissor]);
+  }, [betRock, betPaper, betScissor, bet]);
 
   useEffect(() => {
     if (computerChoice) {
@@ -86,15 +88,23 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   };
 
   const clearState = (betList: string[]) => {
-    if (betList.length > 0) {
-      setSelectedBet([]);
-      setBet(0);
-      setBetRock(0);
-      setBetPaper(0);
-      setBetScissor(0);
-      setComputerChoice('');
-      setWinnerMessage('');
-    }
+    betList.length > 0 && setSelectedBet([]);
+    setBet(0);
+    setBetRock(0);
+    setBetPaper(0);
+    setBetScissor(0);
+    setComputerChoice('');
+    setWinnerMessage('');
+  };
+
+  const playAgain = (balance: number) => {
+    !balance && computerChoice && setBalance(5000);
+    setBet(0);
+    setBetRock(0);
+    setBetPaper(0);
+    setBetScissor(0);
+    setComputerChoice('');
+    setWinnerMessage('');
   };
 
   const winAgainstComputer = (
@@ -129,8 +139,11 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         {
           condition: userBets.includes(compBet),
           message: "It's a tie",
+          updateWin: true,
           updateBalance: 0,
+          getWinner: () => '',
         },
+
         {
           condition:
             userBets.length === 1 && winAgainstComputer(userBets, compBet),
@@ -158,20 +171,34 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       const outcome = outcomes.find((o) => o.condition);
       if (outcome) {
         if (outcome.updateWin) {
+          if (!outcome.getWinner()) {
+            setWin((prevWin) => prevWin - 1);
+            setBalance((prevBalance) => prevBalance - bet);
+          }
           setWin((prevWin) => prevWin + 1);
         }
         if (outcome.updateBalance) {
-          setBalance((prevBalance) => prevBalance * outcome.updateBalance);
+          setBalance(
+            (prevBalance) => prevBalance + bet * outcome.updateBalance
+          );
         }
         const winner = outcome.getWinner ? outcome.getWinner() : undefined;
         setWinner(winner!);
         const message =
-          typeof outcome.message === 'function'
-            ? outcome.message(winner!)
+          typeof outcome.message === 'function' && winner
+            ? outcome.message(winner)
             : outcome.message;
         setWinnerMessage(message);
       }
     }, 1000);
+  };
+
+  const clearBet = (bet: number, variant: string) => {
+    bet && setBet((prevBet) => prevBet - 500);
+    setBalance((prevBalance) => prevBalance + bet);
+    setSelectedBet((prevSelection) =>
+      prevSelection.filter((item) => item !== variant)
+    );
   };
 
   const contextValues: GameContextType = {
@@ -189,6 +216,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     clearState,
     winner,
     winnerMessage,
+    playAgain,
+    clearBet,
   };
 
   return (
