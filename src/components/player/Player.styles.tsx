@@ -1,6 +1,6 @@
 import { css, styled } from 'styled-components';
 import { PlayerStylingProps } from './Player.types';
-import { palette } from '../../theme/palette';
+import { palette, viewPort } from '../../theme/theme';
 
 const opacity = 40;
 
@@ -10,17 +10,22 @@ export const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
-export const Button = styled.button<PlayerStylingProps>`
+export const Button = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== 'variant',
+})<PlayerStylingProps>`
   border-radius: 5px;
-  width: 150px;
-  height: 120px;
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  width: 150px;
+  height: 120px;
   margin-right: 15px;
+
+  @media (${viewPort.small}) {
+    width: 110px;
+    height: 105px;
+  }
 
   ${({ variant }) => {
     switch (variant) {
@@ -55,7 +60,7 @@ export const Bet = styled.div`
   border-radius: 50%;
   margin-right: 0;
   color: ${palette.black};
-  padding: 10px;
+  padding: 20px;
 
   width: 25px;
   height: 25px;
@@ -72,6 +77,10 @@ export const ButtonName = styled.div`
   margin-bottom: 15px;
   width: 100%;
   font-size: 20px;
+
+  @media (${viewPort.small}) {
+    font-size: 10px;
+  }
 `;
 
 export const ClearBetBtt = styled.button`

@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { palette } from '../../theme/palette';
+import { palette } from '../../theme/theme';
 import { StylingBalance } from './Header.types';
 
 export const HeaderWrapper = styled.div`

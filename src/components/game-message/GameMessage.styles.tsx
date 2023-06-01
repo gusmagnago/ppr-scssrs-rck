@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
-import { palette } from '../../theme/palette';
-import { GameStylingProps } from './GameMessage.types';
+import { palette, viewPort } from '../../theme/theme';
+import { GameMessageStylingProps } from './GameMessage.types';
 
 export const GameLetteringWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'bets',
-})<GameStylingProps>`
+})<GameMessageStylingProps>`
   ${({ bets }) =>
     bets?.length
       ? css`
@@ -23,6 +23,10 @@ export const GameLetteringWrapper = styled.div.withConfig({
           justify-content: flex-end;
           height: inherit;
           margin-bottom: 30px;
+
+          @media (${viewPort.small}) {
+            margin-bottom: 10px;
+          }
         `}
 `;
 
@@ -41,7 +45,7 @@ export const MainWinnerWrapper = styled.div`
   align-items: center;
 `;
 
-export const MainWinner = styled.p<GameStylingProps>`
+export const MainWinner = styled.p<GameMessageStylingProps>`
   color: ${({ variant }) => {
     switch (variant) {
       case 'paper':
@@ -62,6 +66,14 @@ export const MainWinner = styled.p<GameStylingProps>`
         `;
     }
   }};
+`;
+
+export const InfoText = styled.p`
+  @media (${viewPort.small}) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const WinnerPoints = styled.div`

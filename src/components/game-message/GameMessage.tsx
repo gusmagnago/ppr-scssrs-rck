@@ -6,6 +6,7 @@ import {
   MainWinner,
   Bet,
   MainWinnerWrapper,
+  InfoText,
 } from './GameMessage.styles';
 import { AppContext } from '../../context/appContext';
 
@@ -43,7 +44,7 @@ export const GameMessage = () => {
           {generateWinnerPointsMessage()}
         </MainWinnerWrapper>
       ) : selectedBet?.length ? (
-        <p>
+        <InfoText>
           {selectedBet.length > 1 ? (
             <>
               <Bet>{selectedBet[0]}</Bet>
@@ -59,7 +60,7 @@ export const GameMessage = () => {
               <Bet>{computerChoice}</Bet>
             </>
           )}
-        </p>
+        </InfoText>
       ) : (
         <p>Pick your positions</p>
       )}

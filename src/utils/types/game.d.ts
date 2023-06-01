@@ -13,14 +13,11 @@ export type GameContextType = {
     handleSelect: (variant: string) => void;
     generateComputerBet: () => void;
     clearState: (betList: selectedBet[]) => void;
-    playAgain: (balance: number) => void
+    playAgain: (balance: number) => void;
     clearBet: (bet: number, variant: string) => void;
 };
 
-
-
 export type GameElements = { variant: PlayerVariantsTypes; bet: number }[];
-
 
 export type Outcome = {
     condition: boolean;

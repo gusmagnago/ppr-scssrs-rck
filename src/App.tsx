@@ -3,7 +3,7 @@ import { AppProvider } from './context/appContext';
 import { PlayButton } from './components/play-button/PlayButton';
 import { Game } from './components/game/Game';
 import styled from 'styled-components';
-import { palette } from './theme/palette';
+import { palette } from './theme/theme';
 
 const bgOpacity = 'b5';
 
