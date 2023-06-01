@@ -9,3 +9,6 @@ export type Palette = {
   betBorder: string;
 };
 
+export type ViewPort = {
+  small: string
+}

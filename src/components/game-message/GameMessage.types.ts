@@ -1,4 +1,4 @@
-export interface GameStylingProps {
+export interface GameMessageStylingProps {
   bets?: string[];
   variant?: string;
 }

@@ -1,4 +1,4 @@
-import { Palette } from "./theme.type";
+import { Palette, ViewPort } from "./theme.type";
 
 export const palette: Palette = {
     paper: '#16C359',
@@ -10,3 +10,7 @@ export const palette: Palette = {
     white: '#FFF',
     betBorder: '#225bf6',
 };
+
+export const viewPort: ViewPort = {
+    small: 'max-width: 768px'
+}
